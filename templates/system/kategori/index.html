@@ -1,0 +1,50 @@
+{% extends 'system/base.html' %}
+
+{% block item_title %} Kategori Index {% endblock %}
+
+{% block item_content %}
+{% if success %}
+<div class="message success">
+	<h3>Success!</h3>
+    <p>
+		Kategori Baru, berhasil ditambahkan !!
+    </p>
+</div>
+{% endif %}
+
+<table class="paginate sortable full">
+	<thead>
+		<tr>
+			<th> No </th>
+			<th> Nama </th>
+			<th> Aksi </th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% for data in kategori %}
+			<tr>
+				<td>1</td>
+				<td>{{ data.nama }}</td>
+				<td>Hapus || Edit </td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+<form action="" method="POST" class="form panel"> 
+    {% csrf_token %}
+	<header><h2>Tambah Kategori Baru</h2></header>
+	<hr/>
+	<fieldset>
+		<dl>
+			<dt></dt><dd><label>{{ form.nama.label }}</label>{{ form.nama }}</dd>
+			<dt></dt><dd><label>{{ form.status.label }}</label>{{ form.status }}</dd>
+			<dt></dt><dd><label></label><input class="button button-green" type="submit" value="Tambah Kategori"></dd>
+		</dl>
+	</fieldset>
+	
+</form>
+{% endblock %}
