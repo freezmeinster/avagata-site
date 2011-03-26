@@ -17,6 +17,7 @@
 		<tr>
 			<th> No </th>
 			<th> Nama </th>
+			<th> Status </th>
 			<th> Aksi </th>
 		</tr>
 		
@@ -26,7 +27,11 @@
 			<tr>
 				<td>1</td>
 				<td>{{ data.nama }}</td>
-				<td>Hapus || Edit </td>
+				<td>{{ data.status }}</td>
+				<td>
+					<a href="{% url kategori_edit data.id %}">Edit</a>||
+					<a href="{% url kategori_hapus data.id %}">Hapus</a> 
+				</td>
 			</tr>
 		{% endfor %}
 	</tbody>

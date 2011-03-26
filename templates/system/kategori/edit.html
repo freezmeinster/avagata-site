@@ -1,0 +1,29 @@
+{% extends 'system/base.html' %}
+
+{% block item_title %} Ubah Kategori {% endblock %}
+
+{% block item_content %}
+{% if success %}
+<div class="message success">
+	<h3>Success!</h3>
+    <p>
+		Kategori Baru, berhasil ditambahkan !!
+    </p>
+</div>
+{% endif %}
+
+
+<form action="" method="POST" class="form panel"> 
+    {% csrf_token %}
+	<header><h2>Ubah Kategori {{ kat.nama }}</h2></header>
+	<hr/>
+	<fieldset>
+		<dl>
+			<dt></dt><dd><label>{{	kategori.nama.label }}</label>{{ kategori.nama }}</dd>
+			<dt></dt><dd><label>{{ kategori.status.label }}</label>{{ kategori.status }}</dd>
+			<dt></dt><dd><label></label><input class="button button-green" type="submit" value="Ubah Kategori"></dd>
+		</dl>
+	</fieldset>
+	
+</form>
+{% endblock %}
