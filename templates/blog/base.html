@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/asset/js/jquery-1.1.3.1.min.js"></script>
     <script type="text/javascript" src="/asset/js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="/asset/js/jquery.lavalamp.min.js"></script>
+    <link rel="shortcut icon" href="/asset/favicon.png" />
     <script type="text/javascript">
         $(function() {
             $("#1, #2, #3").lavaLamp({
@@ -71,6 +72,11 @@
 	 {% for data in kategori %}
 		<li class="cat-item"><a href="{% url kategori_blog_index data.id %}" title="cat">{{ data.nama }}</a></li>
 	 {% endfor %}
+   </ul>
+   <br>
+   <h3>Partner</h3>
+   <ul>
+		<li><a href="http://appspot.com" target="blank"><img src="/asset/images/icons/appengine.png"></a></li>
    </ul>
  </div>
  <div class="clear"></div>

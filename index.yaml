@@ -35,3 +35,9 @@ indexes:
   properties:
   - name: __key__
     direction: desc
+
+- kind: blog_post
+  properties:
+  - name: status
+  - name: tgl_post
+    direction: desc

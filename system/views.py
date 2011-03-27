@@ -1,10 +1,12 @@
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 from google.appengine.api import users
 from blog.models import Post,Kategori,Komentar
 from blog.forms import KategoriForm,PostForm
 from decorator.ip import get_ip
 
+@login_required
 def index(request):
 	user = users.get_current_user()	
 	url = users.create_login_url("/")
@@ -15,6 +17,8 @@ def index(request):
 	})
 
 ############### View Buat Post  #######################
+
+@login_required
 def post(request):
 	post = Post.objects.all()
 	form = PostForm()
@@ -30,12 +34,13 @@ def post(request):
 		'form' : form ,
 	})
 
+@login_required
 def post_edit(request,post_id):
 	pass
 #######################################################
 
 ################ View buat Kategori ###################
-
+@login_required
 def kategori(request):
 	kategori = Kategori.objects.all()
 	form = KategoriForm
@@ -54,6 +59,7 @@ def kategori(request):
 		'success'	:  success,
 	},context_instance=RequestContext(request))
 
+@login_required
 def kategori_edit(request,kategori_id):
 	kat = Kategori.objects.get(id=kategori_id)
 	katform = KategoriForm(instance=kat)
@@ -71,7 +77,8 @@ def kategori_edit(request,kategori_id):
 		'kat' 		: kat,
 		'success' 	: success ,
 	},context_instance=RequestContext(request))
-	
+
+@login_required	
 def kategori_hapus(request,kategori_id):
 	kat = Kategori.objects.get(id=kategori_id)
 	kat.delete()
