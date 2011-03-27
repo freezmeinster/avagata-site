@@ -12,6 +12,12 @@ class Post(models.Model):
 	kategori = models.ForeignKey('Kategori')
 	status = models.CharField(max_length=10,choices=STATUS,default='POST')
 	
+	class Meta:
+		verbose_name_plural = 'Daftar Post'
+	
+	def __unicode__(self):
+		return self.judul
+	
 class Kategori(models.Model):
 	ENABLE = (
 		('AKTIF','Aktif'),
@@ -20,6 +26,9 @@ class Kategori(models.Model):
 	
 	nama = models.CharField(max_length=255)
 	status = models.CharField(max_length=12,choices=ENABLE,default='AKTIF')
+	
+	class Meta:
+		verbose_name_plural = 'Daftar Kategori'
 	
 	def __unicode__(self):
 		return self.nama
@@ -31,3 +40,9 @@ class Komentar(models.Model):
 	posting = models.ForeignKey('Post')
 	komentar = models.TextField()
 	tgl_komentar = models.DateTimeField(auto_now_add=True)
+	
+	class Meta:
+		verbose_name_plural = 'Daftar Komentar'
+	
+	def __unicode__(self):
+		return self.komentar

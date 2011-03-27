@@ -1,19 +1,36 @@
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
+from google.appengine.api import users
 from blog.models import Post,Kategori,Komentar
-from blog.forms import KategoriForm
+from blog.forms import KategoriForm,PostForm
 
 def index(request):
+	user = users.get_current_user()	
+	url = users.create_login_url("/")
 	
-	return render_to_response('system/dashboard.html')
+	return render_to_response('system/dashboard.html',{
+		'user' : user,
+		'user_url' : url,
+	})
 
 ############### View Buat Post  #######################
 def post(request):
+	post = Post.objects.all()
+	form = PostForm()
 	
-	return render_to_response('system/dashboard.html',{
+	if request.method == 'POST' :
+		form = PostForm(request.POST)
+		if form.is_valid :
+			form.save()
+	
+	return render_to_response('system/post/index.html',{
 		'url'  :  'post',
+		'post' : post ,
+		'form' : form ,
 	})
 
+def post_edit(request,post_id):
+	pass
 #######################################################
 
 ################ View buat Kategori ###################

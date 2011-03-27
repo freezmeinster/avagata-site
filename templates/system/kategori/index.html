@@ -29,8 +29,8 @@
 				<td>{{ data.nama }}</td>
 				<td>{{ data.status }}</td>
 				<td>
-					<a href="{% url kategori_edit data.id %}">Edit</a>||
-					<a href="{% url kategori_hapus data.id %}">Hapus</a> 
+					<a href="{% url kategori_edit data.id %}" class="button button-green">Edit</a>
+					<a href="{% url kategori_hapus data.id %}" class="button button-orange">Hapus</a> 
 				</td>
 			</tr>
 		{% endfor %}

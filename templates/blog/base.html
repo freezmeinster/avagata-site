@@ -69,7 +69,7 @@
    <h3>Kategori</h3>
    <ul>
 	 {% for data in kategori %}
-		<li class="cat-item"><a href="{{ data.id }}" title="cat">{{ data.nama }}</a></li>
+		<li class="cat-item"><a href="{% url kategori_blog_index data.id %}" title="cat">{{ data.nama }}</a></li>
 	 {% endfor %}
    </ul>
  </div>

@@ -1,0 +1,48 @@
+{% extends 'system/base.html' %}
+
+{% block item_title %} Post Index {% endblock %}
+
+{% block item_content %}
+<table class="paginate sortable full">
+	<thead>
+		<tr>
+			<th> Judul </th>
+			<th> Kategori </th>
+			<th> Status </th>
+			<th> Tanggal Posting</th>
+			<th> Aksi </th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% for data in post %}
+			<tr>
+				<td>{{ data.judul }}</td>
+				<td>{{ data.kategori }}</td>
+				<td>{{ data.status }}</td>
+				<td>{{ data.tgl_post|date:"D d M Y" }}, {{ data.tgl_post|time:"H:i" }} </td>
+				<td>
+					<a href=""  class="button button-orange">Hapus</a>
+					<a href="{% url post_edit data.id %}"  class="button button-green">Ubah</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+ <form method="POST" action="" class="form panel">
+     <header><h2>Tambahkan Posting Baru</h2></header>
+     <hr />
+    <fieldset>
+       <dl>
+         <dt></dt><dd><label>{{ form.judul.label }}</label>{{ form.judul }}</dd>
+         <dt></dt><dd><label>{{ form.isi.label }}</label>{{ form.isi }}</dd>
+         <dt></dt><dd><label>{{ form.kategori.label }}</label>{{ form.kategori }}</dd>
+         <dt></dt><dd><label>{{ form.status.label }}</label>{{ form.status}}</dd>
+         <dt></dt><dd><label></label><input type="submit" class="button button-blue" value="Buat Posting"></dd>
+       </dl> 
+    </fieldset>
+    </form>
+
+
+{% endblock %}

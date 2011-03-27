@@ -1,24 +1,42 @@
 {% extends "blog/base.html" %}
 {% block content_left %}
 
+{% for data in post.object_list %}
 <div class="post">
  <div class="postheader">
  </div>
  <div class="postcontent">
- <span class="date"> {% now "j F Y" %} </span>
- <h2>Selamat Datang di Avagata</h2>
+ <span class="date"> {{ data.tgl_post|timesince }} yang lalu </span>
+ <h2>{{ data.judul|title }}</h2>
    <p>
-		Seluruh isi Situs ini sedang dalam pengerjaan yang serius. Harap Anda datang lain waktu
+		{{ data.isi|truncatewords:100 }} 
+		<a href="{% url post_blog_view data.id %}">Selanjutnya</a>
    </p>
  </div>
  
  <div class="postbottom">
  <ul class="postmeta">
- <li class="permalink"><a href="#"></a></li>
- <li class="category_link"><a href="#"></a></li>
- <li class="comments_link"><a href="#"></a></li>
+ <li class="category_link"><a href="{% url kategori_blog_index data.kategori.id %}">{{ data.kategori }}</a></li>
+ <li class="comments_link"><a href="#">Komentari</a></li>
  </ul>
  </div>
  </div>
+ {% endfor %}
+ 
+ <div class="pagination">
+    <span class="step-links">
+        {% if post.has_previous %}
+            <a href="?halaman={{ post.previous_page_number }}">Sebelumnya</a>
+        {% endif %}
+
+        <span class="current">
+            Halaman {{ post.number }} dari {{ post.paginator.num_pages }}.
+        </span>
+
+        {% if post.has_next %}
+            <a href="?halaman={{ post.next_page_number }}">Berikutnya</a>
+        {% endif %}
+    </span>
+</div>
  
  {% endblock %}
