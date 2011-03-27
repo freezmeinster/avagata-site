@@ -4,7 +4,7 @@ from blog.models import Post,Kategori,Komentar
 
 def index(request):
 	kat = Kategori.objects.filter(status='AKTIF')
-	post = Post.objects.filter(status='POST')	
+	post = Post.objects.filter(status='POST').order_by('tgl_post').reverse()	
 	paginator = Paginator(post, 8) # Show 25 contacts per page
 
     # Make sure page request is an int. If not, deliver first page.

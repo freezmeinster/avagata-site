@@ -3,6 +3,7 @@ from django.template import RequestContext
 from google.appengine.api import users
 from blog.models import Post,Kategori,Komentar
 from blog.forms import KategoriForm,PostForm
+from decorator.ip import get_ip
 
 def index(request):
 	user = users.get_current_user()	
